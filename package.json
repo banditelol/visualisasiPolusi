@@ -1,0 +1,16 @@
+{
+  "name": "javascriptversion",
+  "version": "1.0.0",
+  "description": "test javascript for raspi",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Aditya Rachman Putra",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
+}

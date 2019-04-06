@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Test Socket.io</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <video id="videoclip" autoplay loop muted width="100%">
+            <source id="mp4" src="/video/vid1.mp4" type="video/mp4">
+        </video>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- include socket.io client side script -->
+    <script>
+        var socket = io(); //load socket.io-client and connect to the host that serves the page
+        let video = document.getElementById("videoclip");
+        let source = document.getElementById("mp4");
+        // const videoList = ["/public/video/vid1.mp4", "/public/video/vid2.mp4"]
+
+        socket.on('vid', function (data) { //get button status from client
+            video.pause();
+            source.setAttribute('src',
+                `/video/vid${data}.mp4`); //change checkbox according to push button on Raspberry Pi
+            video.load();
+            video.play();
+            // socket.emit("light", data); //send push button status to back to server
+            console.log(data);
+        });
+    </script>
+
+</html>
+</body>
+
+</html>
