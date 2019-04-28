@@ -7,9 +7,14 @@
     <style>
         html,
         body {
+	    overflow: hidden;
             margin: 0;
             padding: 0;
         }
+
+	audio{
+	    display: none;
+	}
     </style>
 </head>
 
@@ -19,22 +24,28 @@
             <source id="mp4" src="/video/vid1.mp4" type="video/mp4">
         </video>
     </div>
+    <audio id="mp3" src="/audio/alert.mp3" loop=true />
     <script src="/socket.io/socket.io.js"></script>
     <!-- include socket.io client side script -->
     <script>
         var socket = io(); //load socket.io-client and connect to the host that serves the page
         let video = document.getElementById("videoclip");
         let source = document.getElementById("mp4");
+	let audio = document.getElementById("mp3");
         // const videoList = ["/public/video/vid1.mp4", "/public/video/vid2.mp4"]
 
         socket.on('vid', function (data) { //get button status from client
             video.pause();
             source.setAttribute('src',
-                `/video/vid${data}.mp4`); //change checkbox according to push button on Raspberry Pi
+                `/video/vid${data}.mp4`); 
             video.load();
             video.play();
-            // socket.emit("light", data); //send push button status to back to server
-            console.log(data);
+            
+	    if(data === 6){
+		audio.play();
+	    } else {
+		audio.pause();
+	    }
         });
     </script>
 
