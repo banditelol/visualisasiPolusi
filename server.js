@@ -29,7 +29,7 @@ buttons.forEach(function (button, index) {
 		videoIndex = index + 1;
 		console.log("videoIndex",videoIndex);
 		controlOutputState(videoIndex);
-		io.emit("vid", videoindex);
+		io.emit("vid", videoIndex);
 	}
     });
 })
@@ -47,6 +47,7 @@ http.listen(3000, function () {
 
 io.sockets.on('connection', function (socket) { // WebSocket Connection //static variable for current status
     socket.emit("vid", videoIndex);
+    controlOutputState(videoIndex);
     videoIndex = incrementVideoIndex(videoIndex);
 });
 

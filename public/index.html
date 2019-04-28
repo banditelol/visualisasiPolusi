@@ -29,22 +29,22 @@
     <!-- include socket.io client side script -->
     <script>
         var socket = io(); //load socket.io-client and connect to the host that serves the page
-        let video = document.getElementById("videoclip");
-        let source = document.getElementById("mp4");
-	let audio = document.getElementById("mp3");
+        let videoPlayer = document.getElementById("videoclip");
+        let videoSource = document.getElementById("mp4");
+	let audioPlayer = document.getElementById("mp3");
         // const videoList = ["/public/video/vid1.mp4", "/public/video/vid2.mp4"]
 
         socket.on('vid', function (data) { //get button status from client
-            video.pause();
-            source.setAttribute('src',
+            videoPlayer.pause();
+            videoSource.setAttribute('src',
                 `/video/vid${data}.mp4`); 
-            video.load();
-            video.play();
+            videoPlayer.load();
+            videoPlayer.play();
             
 	    if(data === 6){
-		audio.play();
+		audioPlayer.play();
 	    } else {
-		audio.pause();
+		audioPlayer.pause();
 	    }
         });
     </script>
