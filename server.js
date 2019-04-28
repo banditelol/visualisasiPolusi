@@ -28,6 +28,7 @@ buttons.forEach(function (button, index) {
 	if(level === 0){
 		videoIndex = index + 1;
 		console.log("videoIndex",videoIndex);
+		controlOutputState(videoIndex);
 		io.emit("vid", videoindex);
 	}
     });
@@ -63,7 +64,7 @@ function turnFanOn(fan, on = true){
 	}
 }
 
-function processState(videoIndex){
+function controlOutputState(videoIndex){
 	switch(videoIndex) {
 		case 1:
 			setLedColor(0,255,0);
